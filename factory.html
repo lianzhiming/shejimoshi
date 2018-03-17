@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <!-- <script type="text/javascript">
+    //搭建一个工厂环境
+    //卖车的商店
+    function CarShop() {
+
+    };
+    CarShop.prototype = {
+        constructor: CarShop,
+        sellCar: function(type) {
+            var car;
+            switch (type) {
+                case 'Benz':
+                    car = new Benz();
+                    break;
+                case 'Bow':
+                    car = new Bow();
+                    break;
+                case 'Audi':
+                    car = new Audi();
+                    break;
+                default:
+                    'not buy it';
+            }
+            return car;
+        }
+    };
+
+    //Class benz bow audi
+
+    function Benz() {};
+    Benz.prototype.start = function() {
+        alert('Benz start');
+    }
+    Benz.prototype.run = function() {
+        alert('Benz run');
+    }
+
+    function Bow() {};
+    Bow.prototype.start = function() {
+        alert('Bow start');
+    }
+    Bow.prototype.run = function() {
+        alert('Bow run');
+    }
+
+    function Audi() {};
+    Audi.prototype.start = function() {
+        alert('Audi start');
+    }
+    Audi.prototype.run = function() {
+        alert('Audi run');
+    }
+
+    var shop = new CarShop();
+    var car = shop.sellCar('Benz');
+    car.start();
+    car.run();
+    </script> -->
+    <script type="text/javascript">
+    //搭建一个工厂环境
+    //卖车的商店
+    function CarShop() {
+
+    };
+    CarShop.prototype = {
+        constructor: CarShop,
+        sellCar: function(type) {
+            var car;
+            switch (type) {
+                case 'Benz':
+                    car = new Benz();
+                    break;
+                case 'Bow':
+                    car = new Bow();
+                    break;
+                case 'Audi':
+                    car = new Audi();
+                    break;
+                default:
+                    'not buy it';
+            }
+            return car;
+        }
+    };
+
+    //超类
+    function BaseCar() {};
+    BaseCar.prototype = {
+        constructor: BaseCar,
+        start: function() {
+            alert(`${this.constructor} start`);
+        },
+        run: function() {
+            alert(`${this.constructor} run`);
+        },
+    };
+
+    //Class benz bow audi
+    Benz.prototype = BaseCar.prototype;
+
+    function Benz() {};
+
+
+    Bow.prototype = BaseCar.prototype;
+
+    function Bow() {};
+
+    Audi.prototype = BaseCar.prototype;
+
+    function Audi() {};
+
+    var shop = new CarShop();
+    var car = shop.sellCar('Benz');
+    car.start();
+    car.run();
+    </script>
+</body>
+
+</html>
