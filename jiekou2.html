@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <script type="text/javascript">
+    //属性检测方式
+    /*interface CompositeImpl{
+        function add(obj){};
+        function remove(obj){};
+        function update(obj){};
+    }*/
+
+    //CompositeImpl
+    function CompositeImpl() {
+        //显示的在类的内部，接受所实现的的接口
+        //一般来说是一个规范，我们的项目经理：再累的内部定义一个数组（名字要固定）
+        this.implementsInterface = ['Composite', 'FormItem'];
+    }
+    CompositeImpl.prototype.add = function(obj) {
+        alert("add...")
+    };
+    CompositeImpl.prototype.remove = function(obj) {
+
+    };
+    CompositeImpl.prototype.update = function(obj) {
+
+    };
+    CompositeImpl.prototype.select = function(obj) {
+
+    };
+
+    //检测CompositeImpl类的对象的
+    function CheckCompositeImpl(instance) {
+        //判断当前对象是否实现了所有接口
+        if (!IsInplements(instance, 'Composite', 'FormItem')) {
+            throw new Error('这个实体对象没有实现所必须的接口');
+        }
+    }
+
+    //公用的具体的检测方法
+    function IsInplements(object) {
+        console.log(666, object)
+        for (var i = 1; i < arguments.length; i++) {
+            var interfaceName = arguments[i];
+            var interfaceFound = false;
+            for (var j = 0; j < object.implementsInterface.length; j++) {
+                if (object.implementsInterface[j] == interfaceName) {
+                    interfaceFound = true;
+                    break;
+                }
+            }
+            if (!interfaceFound) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+
+
+
+
+    var c1 = new CompositeImpl();
+    CheckCompositeImpl(c1);
+    c1.add();
+    console.log(c1);
+    </script>
+</body>
+
+</html>

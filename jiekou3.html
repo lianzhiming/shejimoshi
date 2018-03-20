@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <script type="text/javascript">
+    //鸭式辨型法--》最完美的方式
+
+    //1、接口类 ->实例化n个接口
+    //
+    var Interface = function(name, methods) {
+        //判断参数个数
+        if (arguments.length !== 2) {
+            throw new Error('Interface的参数必须是两个')；
+        }
+        this.name = name;
+        this.methods = [];
+        for (var i = 0, len = methods.length; i < len; i++) {
+            if (typeof methods[i] !== "string") {
+                throw new Error('method的类型必须是字符串');
+            }
+            this.methods.push(methods[i]);
+        }
+    }
+
+
+
+    //2、准备工作：
+    //(1)实例化接口对象
+    var CompositeInterface = new Interface('CompositeInterface', ['add', 'remove']);
+    var FormItemInterce = new Interface('FormItemInterce', ['update', 'select']);
+    //(2)具体的实现类
+    var CompositeImpl = function() {
+
+    }
+    //3、实现接口的方法
+    CompositeImpl.prototype.add = function(obj) {
+        alert("add...")
+    };
+    CompositeImpl.prototype.remove = function(obj) {
+        alert("remove...")
+    };
+    CompositeImpl.prototype.update = function(obj) {
+        alert("update...")
+    };
+    CompositeImpl.prototype.select = function(obj) {
+        alert("select...")
+    };
+
+
+
+    //3、检验接口里的方法
+    Interface.ensureImplements = function() {
+
+    }
+
+    var c1 = new CompositeImpl();
+    Interface.ensureImplements(c1, CompositeInterface, FormItemInterce);
+    </script>
+</body>
+
+</html>
